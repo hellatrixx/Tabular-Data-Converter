@@ -46,12 +46,6 @@ namespace myApp
             } 
          }
 
-
-        /* public enum tablesFormat
-        {
-            None = 0,
-            JSON = 1
-        } */
          
 
          public static string checkFile(string[] args)
@@ -61,7 +55,8 @@ namespace myApp
             if (File.Exists(fileName))
             {
                 inputTable = File.ReadAllText(fileName);
-                return inputTable;
+                string table = inputTable.ToString();
+                Console.WriteLine(tableMaker(table));
             }
             else
             {
@@ -69,14 +64,31 @@ namespace myApp
             }
             return inputTable;
          }
-         
-         
-         
-         public static string jsonTable ()
+
+         public static DataTable tableMaker(string table)
          {
-            string jsonTableData = File.ReadAllText("table.json");
-            return jsonTableData;
-         }   
+            DataTable dt = new DataTable();
+            string[] rows = table.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            string[] headers = rows[0].Split(',');
+            foreach (string header in headers)
+            {
+                dt.Columns.Add(header);
+            }
+            for (int i = 1; i < rows.Length; i++)
+            {
+                string[] row = rows[i].Split(',');
+                DataRow dr = dt.NewRow();
+                for (int j = 0; j < row.Length; j++)
+                {
+                    dr[j] = row[j];
+                }
+                dt.Rows.Add(dr);
+            }
+            return dt;
+         }
+        
+         
+        
 
 
 
