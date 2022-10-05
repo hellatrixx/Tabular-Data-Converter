@@ -12,13 +12,16 @@ namespace myApp
         //Command Line Parser
         public static void Args(string[] args)
          {
+            string argInput = args[0].Split('.')[1];
+            string argOutput = args[2].Split('.')[1];
+
 
             foreach (string arg in args)
             {
                 switch (arg) {
                     case "-h":
                     case "--help":
-                        Console.WriteLine("Help");
+                        Console.WriteLine("-v,	—verbose  Verbose mode (debugging output to	STDOUT), -o	<file>,	—output=<file> Output file specified by	<file>, -l,	—list-formats List formats, -h,	—help Show usage message, -i,	—info Show version information");
                         break; 
                     
                     case "-l":
@@ -46,9 +49,8 @@ namespace myApp
             } 
          }
 
-         
 
-         public static string checkFile(string[] args)
+ /*        public static string checkFile(string[] args)
          {
             string inputTable = "";
             string fileName = args[0];
@@ -63,9 +65,24 @@ namespace myApp
                 Console.WriteLine("File does not exist");
             }
             return inputTable;
-         }
+         } */
 
-         public static DataTable tableMaker(string table)
+        public static string checkFile(argInput, argOutput, string[] args)
+         {File.
+            switch(argInput, argOutput)
+            {
+                case "csv", "":
+                    string inputTable = File.ReadAllText(argInput);
+                    
+                    
+            }
+         }
+        
+
+        
+
+
+/*         public static DataTable tableMaker(string table)
          {
             DataTable dt = new DataTable();
             string[] rows = table.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
@@ -85,7 +102,7 @@ namespace myApp
                 dt.Rows.Add(dr);
             }
             return dt;
-         }
+         } */
         
          
         
