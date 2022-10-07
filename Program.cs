@@ -12,17 +12,17 @@ namespace myApp
         //Command Line Parser
         public static void Args(string[] args)
          {
-            string argInput = args[0].Split('.')[1];
-            string argOutput = args[2].Split('.')[1];
+            string argInput = args[0].Split('.')[1]; //Get the input file extension
+            string argOutput = args[2].Split('.')[1]; //Get the output file extension
 
 
-            foreach (string arg in args)
+            foreach (string arg in args) //command line parser
             {
     
                 switch (arg) {
                     case "-h":
                     case "--help":
-                        Console.WriteLine("-v,	—verbose  Verbose mode (debugging output to	STDOUT), -o	<file>,	—output=<file> Output file specified by	<file>, -l,	—list-formats List formats, -h,	—help Show usage message, -i,	—info Show version information");
+                        Console.WriteLine("-v, —verbose Verbose mode (debugging output to	STDOUT), -o	<file>,	—output=<file> Output file specified by	<file>, -l,	—list-formats List formats, -h,	—help Show usage message, -i, —info Show version information");
                         break; 
                     
                     case "-l":
@@ -97,26 +97,9 @@ namespace myApp
          }
 
 
- /*        public static string checkFile(string[] args)
-         {
-            string inputTable = "";
-            string fileName = args[0];
-            if (File.Exists(fileName))
-            {
-                inputTable = File.ReadAllText(fileName);
-                string table = inputTable.ToString();
-                Console.WriteLine(tableMaker(table));
-            }
-            else
-            {
-                Console.WriteLine("File does not exist");
-            }
-            return inputTable;
-         } */
 
 
-
-         public static void csvTable()
+         public static void csvTable() //CSV Datatable method
          {
             string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.csv");
             string table = inputTable.ToString();
@@ -151,7 +134,7 @@ namespace myApp
         }
         
         
-        public static void jsonTable()
+        public static void jsonTable() //JSON Datatable method
          {
             string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.json");
             DataTable jsonMidTable = new DataTable();
@@ -181,7 +164,7 @@ namespace myApp
             }
          }
 
-         public static void mdTable()
+         public static void mdTable() //MD Datatable Method
          {
             string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.md");
             string table = inputTable.ToString();
@@ -215,7 +198,7 @@ namespace myApp
             }
         }
 
-        public static void htmlTable()
+        public static void htmlTable() //Html datatable method
          {
             string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.html");
             string table = inputTable.ToString();
@@ -252,35 +235,6 @@ namespace myApp
         
 
 
-/*         public static DataTable tableMaker(string table)
-         {
-            DataTable dt = new DataTable();
-            string[] rows = table.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            string[] headers = rows[0].Split(',');
-            foreach (string header in headers)
-            {
-                dt.Columns.Add(header);
-            }
-            for (int i = 1; i < rows.Length; i++)
-            {
-                string[] row = rows[i].Split(',');
-                DataRow dr = dt.NewRow();
-                for (int j = 0; j < row.Length; j++)
-                {
-                    dr[j] = row[j];
-                }
-                dt.Rows.Add(dr);
-            }
-            return dt;
-         } */
-        
-         
-        
-
-
-
-
-
         static void Main(string[] args)
         {
             
@@ -290,3 +244,5 @@ namespace myApp
         }
     }
 }
+
+//Operating System : Windows 11 , IDE : Visual Studio 2022 , Language : C# , Framework : .NET 5.0
