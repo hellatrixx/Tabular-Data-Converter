@@ -18,6 +18,7 @@ namespace myApp
 
             foreach (string arg in args)
             {
+    
                 switch (arg) {
                     case "-h":
                     case "--help":
@@ -42,9 +43,55 @@ namespace myApp
 
                     case "-o":
                     case "--output":
-                        //Console.WriteLine(jsonTable());
-                        Console.WriteLine(checkFile(args));
-                        break;
+                        if(argInput == "csv" && argOutput == "md")
+                        {
+                            mdTable();
+                        }
+                        if(argInput == "csv" && argOutput == "json")
+                        {
+                            jsonTable();
+                        }
+                        if(argInput == "csv" && argOutput == "html")
+                        {
+                            htmlTable();
+                        }
+                        if(argInput == "md" && argOutput == "csv")
+                        {
+                            csvTable();
+                        }
+                        if(argInput == "md" && argOutput == "json")
+                        {
+                            jsonTable();
+                        }
+                        if(argInput == "md" && argOutput == "html")
+                        {
+                            htmlTable();
+                        }
+                        if(argInput == "html" && argOutput == "md")
+                        {
+                            mdTable();
+                        }
+                        if(argInput == "html" && argOutput == "csv")
+                        {
+                            csvTable();
+                        }
+                        if(argInput == "html" && argOutput == "json")
+                        {
+                            jsonTable();
+                        }
+                        if(argInput == "json" && argOutput == "csv")
+                        {
+                            csvTable();
+                        }
+                        if(argInput == "json" && argOutput == "md")
+                        {
+                            mdTable();
+                        }
+                        if(argInput == "json" && argOutput == "html")
+                        {
+                            htmlTable();
+                        }
+                        break; 
                 } 
             } 
          }
@@ -67,17 +114,140 @@ namespace myApp
             return inputTable;
          } */
 
-        public static string checkFile(argInput, argOutput, string[] args)
-         {File.
-            switch(argInput, argOutput)
+
+
+         public static void csvTable()
+         {
+            string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.csv");
+            string table = inputTable.ToString();
+            DataTable csvMidTable = new DataTable();
+            string[] rows = inputTable.Split(new string[] {Environment.NewLine}, StringSplitOptions.None);
+            string[] headers = rows[0].Split(',');
+            foreach (string header in headers)
             {
-                case "csv", "":
-                    string inputTable = File.ReadAllText(argInput);
-                    
-                    
+                csvMidTable.Columns.Add(header);
+            }
+            for(int i = 1; i < rows.Length; i++)
+            {
+                string[] data = rows[i].Split(',');
+                DataRow dr = csvMidTable.NewRow();
+                for (int j = 0; j < data.Length; j++)
+                {
+                    dr[j] = data[j];
+                }
+                csvMidTable.Rows.Add(dr);
+            }
+            
+            
+
+            foreach (DataRow dr in csvMidTable.Rows)
+            {
+                foreach (var item in dr.ItemArray)
+                {
+                    Console.Write(item + " ");
+                }
+             Console.WriteLine();
+            }
+        }
+        
+        
+        public static void jsonTable()
+         {
+            string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.json");
+            DataTable jsonMidTable = new DataTable();
+            string[] rows = inputTable.Split(new string[] {Environment.NewLine}, StringSplitOptions.None);
+            string[] headers = rows[0].Split(',');
+            foreach (string header in headers)
+            {
+                jsonMidTable.Columns.Add(header);
+            }
+            for(int i = 1; i < rows.Length; i++)
+            {
+                string[] data = rows[i].Split(',');
+                DataRow dr = jsonMidTable.NewRow();
+                for (int j = 0; j < data.Length; j++)
+                {
+                    dr[j] = data[j];
+                }
+                jsonMidTable.Rows.Add(dr);
+            }
+            foreach (DataRow dr in jsonMidTable.Rows)
+            {
+                foreach (var item in dr.ItemArray)
+                {
+                    Console.Write(item + " ");
+                }
+             Console.WriteLine();
             }
          }
-        
+
+         public static void mdTable()
+         {
+            string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.md");
+            string table = inputTable.ToString();
+            DataTable csvMidTable = new DataTable();
+            string[] rows = inputTable.Split(new string[] {Environment.NewLine}, StringSplitOptions.None);
+            string[] headers = rows[0].Split(',');
+            foreach (string header in headers)
+            {
+                csvMidTable.Columns.Add(header);
+            }
+            for(int i = 1; i < rows.Length; i++)
+            {
+                string[] data = rows[i].Split(',');
+                DataRow dr = csvMidTable.NewRow();
+                for (int j = 0; j < data.Length; j++)
+                {
+                    dr[j] = data[j];
+                }
+                csvMidTable.Rows.Add(dr);
+            }
+            
+            
+
+            foreach (DataRow dr in csvMidTable.Rows)
+            {
+                foreach (var item in dr.ItemArray)
+                {
+                    Console.Write(item + " ");
+                }
+             Console.WriteLine();
+            }
+        }
+
+        public static void htmlTable()
+         {
+            string inputTable = File.ReadAllText("C:\\Users\\stili\\VS projects\\C#\\myApp\\table.html");
+            string table = inputTable.ToString();
+            DataTable csvMidTable = new DataTable();
+            string[] rows = inputTable.Split(new string[] {Environment.NewLine}, StringSplitOptions.None);
+            string[] headers = rows[0].Split(',');
+            foreach (string header in headers)
+            {
+                csvMidTable.Columns.Add(header);
+            }
+            for(int i = 1; i < rows.Length; i++)
+            {
+                string[] data = rows[i].Split(',');
+                DataRow dr = csvMidTable.NewRow();
+                for (int j = 0; j < data.Length; j++)
+                {
+                    dr[j] = data[j];
+                }
+                csvMidTable.Rows.Add(dr);
+            }
+            
+            
+
+            foreach (DataRow dr in csvMidTable.Rows)
+            {
+                foreach (var item in dr.ItemArray)
+                {
+                    Console.Write(item + " ");
+                }
+             Console.WriteLine();
+            }
+        }
 
         
 
